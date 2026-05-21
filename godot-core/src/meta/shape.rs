@@ -612,7 +612,10 @@ impl GodotElementShape {
                 Some(name) => name.to_string(),
                 None => variant_type.godot_type_name().to_string(),
             },
-            Self::Custom { variant_type, .. } => variant_type.godot_type_name().to_string(),
+            Self::Custom { class_name, variant_type, .. } => match class_name {
+                None => variant_type.godot_type_name().to_string(),
+                Some(name) => name.to_string(),
+            },
         }
     }
 
